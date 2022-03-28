@@ -14,9 +14,9 @@ class giaovien
 		void nhapthongtin(giaovien gv[], int &n);
 		void tieude();
 		void xuatthongtin(giaovien gv[], int &n);
-        void tinhtien(giaovien gv[], int &n);
-		void tienluong(giaovien gv[], int &n);
-        void sxtheonganh(giaovien gv[], int &n);
+        void tinhtien(giaovien gv[], int n);
+		void sx(giaovien gv[], int &n);
+        void lietke(giaovien gv[], int &n);
 };
 void giaovien::nhapthongtin(giaovien gv[], int &n)
 {
@@ -65,23 +65,36 @@ void giaovien::xuatthongtin(giaovien gv[], int &n)
 	cout <<"+------------------------+----------------------+----------------------------+------------+------------------+-------------------+"<<endl; 
 	}
 }
-void giaovien::tinhtien(giaovien gv[], int &n)
+void giaovien::tinhtien(giaovien gv[], int n)
 {
     for(int i=0; i<n; i++)
     {
         gv[i].lcb = gv[i].bl * 610;
     }
 }
-void giaovien::tienluong(giaovien gv[], int &n)
+void giaovien::sx(giaovien gv[], int &n)
+{
+    cout<<"\t\t\t\t\t\tDanh sach giao vien sau khi sap xep la: "<<endl;
+    for(int i=0; i<n; i++)
+    {
+        for(int j=i+1; j<=n; j++)
+        {
+            if(gv[i].cn < gv[j].cn)
+            swap(gv[i], gv[j]);
+        }
+    }
+    xuatthongtin(gv,n);
+}
+void giaovien::lietke(giaovien gv[], int &n)
 {
     tinhtien(gv,n);
-    cout<<"\t\t\t\t\t-----------------------DANH SACH GIAO VIEN CO TIEN LUONG <2000 ---------------------------"<<endl;
+    cout<<"\t\t\t\t\t\tDanh sach giao vien luong nho hon 2000 la: "<<endl;
     tieude();
     for(int i=0; i<n; i++)
     {
-        if(gv[i].lcb < 2000)
+        if(gv[i].lcb<2000)
         {
-        cout <<"|"<<setw(15)<<gv[i].ht<<setw(10)
+            cout <<"|"<<setw(15)<<gv[i].ht<<setw(10)
              <<"|"<<setw(15)<<gv[i].bc<<setw(8)
              <<"|"<<setw(20)<<gv[i].cn<<setw(9)
              <<"|"<<setw(8)<<gv[i].t<<setw(5)
@@ -90,18 +103,6 @@ void giaovien::tienluong(giaovien gv[], int &n)
              <<"|"<<endl;
 	    cout <<"+------------------------+----------------------+----------------------------+------------+------------------+-------------------+"<<endl;     
         }
-    }
-}
-void giaovien::sxtheonganh(giaovien gv[], int &n)
-{
-    cout<<"\t\t\t\t\t-----------------------DANH SACH SAU KHI SAP XEP---------------------------"<<endl;
-    for(int i=0;i<n;i++){
- 		for(int j=i+1;j<n;j++){
-             if(gv[i].cn<gv[j].cn)
-             {
-                 swap(gv[i].cn,gv[j].cn);
-             }
-         }
     }
 }
 int main()
@@ -117,6 +118,6 @@ int main()
 	gv->nhapthongtin(gv,n);
 	gv->xuatthongtin(gv,n);
     gv->tinhtien(gv,n);
-    gv->tienluong(gv,n);
-    gv->sxtheonganh(gv,n);
+    gv->lietke(gv,n);
+    gv->sx(gv,n);
 }
