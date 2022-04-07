@@ -18,7 +18,7 @@ class GV{
 			cout<<"Tuoi: ";
 			is>>a.t;
 			cin.ignore();
-			cout<<"Bang cap cap nhat: ";
+			cout<<"Bang cap cao nhat: ";
 			is.getline(a.bc, 15);
 			cout<<"Chuyen nganh: ";
 			is.getline(a.cn, 20);
